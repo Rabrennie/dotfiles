@@ -38,8 +38,9 @@ link_file() {
     info "linking $1 to $2"
 
     if test -f "$2"; then
-        mv "$2" "$2.bak"
-        success "moved $2 to $2.bak"
+        BACKUP="$2.$(date +%s).bak"
+        mv "$2" "$BACKUP"
+        success "moved $2 to $BACKUP"
     fi
 
     if [ ! -L "$2" ]; then
