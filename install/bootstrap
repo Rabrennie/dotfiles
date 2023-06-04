@@ -27,6 +27,7 @@ fi
 
 info 'installing tools'
 brew install bat exa fzf nvm jq ripgrep starship
+/bin/bash -c "$(brew --prefix)/opt/fzf/install --no-update-rc --completion --key-bindings"
 success 'installed tools'
 
 info 'installing fonts'

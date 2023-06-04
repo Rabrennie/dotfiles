@@ -5,5 +5,7 @@ source_if_exists () {
 }
 
 source_if_exists $HOME/.env.sh
+source_if_exists $HOME/.fzf.zsh
 
+# Starship
 eval "$(starship init zsh)"
