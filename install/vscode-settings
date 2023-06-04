@@ -15,9 +15,15 @@ if [ ! -f "$SETTINGS_PATH" ]; then
 fi
 
 SETTINGS="$(cat "$DOTFILES/vscode/settings.json")"
-NEW_SETTINGS="$(jq ". += $SETTINGS" <"$SETTINGS_PATH")"
+NEW_SETTINGS="$(jq ". += $SETTINGS" --sort-keys <"$SETTINGS_PATH")"
 
 mv "$SETTINGS_PATH" "$SETTINGS_PATH.bak"
 echo "$NEW_SETTINGS" >"$SETTINGS_PATH"
 
 success 'Updated vscode settings'
+
+info 'installing vscode extensions'
+
+gxargs -n1 code --install-extension <"$DOTFILES/vscode/extensions"
+
+success 'installed vscode extenions'

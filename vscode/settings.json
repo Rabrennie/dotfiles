@@ -2,5 +2,38 @@
   "editor.fontFamily": "JetBrainsMono NF",
   "editor.fontLigatures": true,
   "editor.renderWhitespace": "all",
-  "terminal.integrated.fontFamily": "JetBrainsMono NF"
+  "editor.accessibilitySupport": "off",
+  "editor.cursorStyle": "line",
+  "editor.detectIndentation": false,
+  "editor.fontSize": 13,
+  "editor.guides.bracketPairs": "active",
+  "editor.insertSpaces": false,
+  "editor.lineNumbers": "on",
+  "editor.minimap.enabled": false,
+  "editor.stickyScroll.enabled": true,
+  "editor.tabSize": 4,
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "editor.wordWrap": "off",
+  "explorer.compactFolders": false,
+  "explorer.sortOrder": "foldersNestsFiles",
+  "terminal.integrated.fontFamily": "JetBrainsMono NF",
+  "git.autoRepositoryDetection": "openEditors",
+  "git.detectSubmodules": false,
+  "git.openRepositoryInParentFolders": "never",
+  "telemetry.telemetryLevel": "off",
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.shellIntegration.enabled": false,
+  "vim.easymotion": true,
+  "vim.leader": "<space>",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "after": ["leader", "leader", "leader", "b", "d", "w"],
+      "before": [";"]
+    }
+  ],
+  "workbench.colorTheme": "One Dark Pro Flat",
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.labelFormat": "short",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.tree.renderIndentGuides": "always"
 }
