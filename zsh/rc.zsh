@@ -7,6 +7,7 @@ source_if_exists () {
 autoload -Uz compinit && compinit
 
 source_if_exists $HOME/.env.sh
+source_if_exists $DOTFILES/zsh/aliases.zsh
 source_if_exists $HOME/.fzf.zsh
 source_if_exists $DOTFILES/dependencies/fzf-tab/fzf-tab.plugin.zsh
 
