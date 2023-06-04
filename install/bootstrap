@@ -29,7 +29,7 @@ else
 fi
 
 info 'installing tools'
-brew install bat exa fzf nvm jq ripgrep starship
+brew install bat exa fzf nvm jq ripgrep starship findutils
 /bin/bash -c "$(brew --prefix)/opt/fzf/install --no-update-rc --completion --key-bindings"
 git clone https://github.com/Aloxaf/fzf-tab "$DEPENDENCIES/fzf-tab"
 success 'installed tools'
