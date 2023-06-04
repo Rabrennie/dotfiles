@@ -1,0 +1,6 @@
+{
+  "editor.fontFamily": "JetBrainsMono NF",
+  "editor.fontLigatures": true,
+  "editor.renderWhitespace": "all",
+  "terminal.integrated.fontFamily": "JetBrainsMono NF"
+}

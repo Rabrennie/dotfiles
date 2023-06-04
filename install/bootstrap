@@ -1,0 +1,80 @@
+#! /bin/bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+source "$DOTFILES/install/helpers"
+
+DOTFILES=$(pwd -P)
+
+# install xcode tools
+if [[ ! -d $(xcode-select -p) ]]; then
+    info 'installing xcode tools'
+    xcode-select --install
+    success 'installed xcode tools'
+else
+    success 'xcode tools already installed'
+fi
+
+# Install homebrew
+if [[ ! -f $(which brew) ]]; then
+    info 'installing homebrew'
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    success 'installed homebrew'
+else
+    success 'Homebrew already installed'
+fi
+
+info 'installing tools'
+brew install bat exa fzf nvm jq ripgrep starship
+success 'installed tools'
+
+info 'installing fonts'
+brew tap homebrew/cask-fonts
+brew install --cask font-jetbrains-mono-nerd-font
+success 'installed fonts'
+
+link_file() {
+    info "linking $1 to $2"
+
+    if test -f "$2"; then
+        mv "$2" "$2.bak"
+        success "moved $2 to $2.bak"
+    fi
+
+    if [ ! -L "$2" ]; then
+        ln -s "$1" "$2"
+    fi
+
+    success "linked $1 to $2"
+}
+
+install_dotfiles() {
+    info 'installing dotfiles'
+
+    while read -r linkfile; do
+        while read -r line; do
+            local src dst dir
+            src=$(eval echo "$line" | cut -d '=' -f 1)
+            dst=$(eval echo "$line" | cut -d '=' -f 2)
+            dir=$(dirname "$dst")
+
+            mkdir -p "$dir"
+            link_file "$src" "$dst"
+        done <"$linkfile"
+    done < <(find -H "$DOTFILES" -maxdepth 2 -name 'links.prop' -not -path '*.git*')
+}
+
+create_env_file() {
+    if test -f "$HOME/.env.sh"; then
+        success "$HOME/.env.sh file already exists, skipping"
+    else
+        echo "export DOTFILES=$DOTFILES" >"$HOME/.env.sh"
+        success 'created ~/.env.sh'
+    fi
+}
+
+create_env_file
+install_dotfiles
+
+source "$DOTFILES/install/vscode-settings"

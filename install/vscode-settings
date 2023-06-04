@@ -1,0 +1,23 @@
+#! /bin/bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+DOTFILES=$(pwd -P)
+SETTINGS_PATH="$HOME/Library/Application Support/Code/User/settings.json"
+
+source "$DOTFILES/install/helpers"
+
+info 'Updating vscode settings'
+
+if [ ! -f "$SETTINGS_PATH" ]; then
+    fail 'vscode is not installed'
+fi
+
+SETTINGS="$(cat "$DOTFILES/vscode/settings.json")"
+NEW_SETTINGS="$(jq ". += $SETTINGS" <"$SETTINGS_PATH")"
+
+mv "$SETTINGS_PATH" "$SETTINGS_PATH.bak"
+echo "$NEW_SETTINGS" >"$SETTINGS_PATH"
+
+success 'Updated vscode settings'
