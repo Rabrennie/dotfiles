@@ -1,12 +1,12 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-$directory \
-$git_branch \
-$ruby \
-$nodejs \
-$fill \
-$time \
+$directory\
+$git_branch\
+$ruby\
+$nodejs\
+$fill\
+$time\
 $line_break\
 $character"""
 
@@ -15,7 +15,7 @@ add_newline = true
 [directory]
 truncation_length = 4
 truncate_to_repo = false
-format = "[$path]($style)[$read_only]($read_only_style)"
+format = "[$path]($style)[$read_only]($read_only_style) "
 style = 'cyan'
 
 [character]
@@ -23,7 +23,7 @@ success_symbol = '[➜](green)'
 
 [git_branch]
 symbol = ' '
-format = '[//](dimmed) [$symbol($branch)]($style)'
+format = '[//](dimmed) [$symbol($branch)]($style) '
 style = "purple"
 
 [time]
@@ -35,11 +35,11 @@ style = 'bold green'
 
 [ruby]
 symbol = " "
-format = "[//](dimmed) [$symbol($version)]($style)"
+format = "[//](dimmed) [$symbol($version)]($style) "
 style = 'red'
 detect_variables = []
 
 [nodejs]
 symbol = " "
-format = "[//](dimmed) [$symbol($version)]($style)"
+format = "[//](dimmed) [$symbol($version)]($style) "
 style = "green"
