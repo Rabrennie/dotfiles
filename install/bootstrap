@@ -6,6 +6,9 @@ IFS=$'\n\t'
 source "$DOTFILES/install/helpers"
 
 DOTFILES=$(pwd -P)
+DEPENDENCIES="$DOTFILES/dependencies"
+
+mkdir -p "$DEPENDENCIES"
 
 # install xcode tools
 if [[ ! -d $(xcode-select -p) ]]; then
@@ -28,6 +31,7 @@ fi
 info 'installing tools'
 brew install bat exa fzf nvm jq ripgrep starship
 /bin/bash -c "$(brew --prefix)/opt/fzf/install --no-update-rc --completion --key-bindings"
+git clone https://github.com/Aloxaf/fzf-tab "$DEPENDENCIES/fzf-tab"
 success 'installed tools'
 
 info 'installing fonts'

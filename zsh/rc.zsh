@@ -4,8 +4,11 @@ source_if_exists () {
     fi
 }
 
+autoload -Uz compinit && compinit
+
 source_if_exists $HOME/.env.sh
 source_if_exists $HOME/.fzf.zsh
+source_if_exists $DOTFILES/dependencies/fzf-tab/fzf-tab.plugin.zsh
 
 # Starship
 eval "$(starship init zsh)"
