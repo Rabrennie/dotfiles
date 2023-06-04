@@ -30,6 +30,7 @@ fi
 
 info 'installing tools'
 brew install bat exa fzf nvm jq ripgrep starship findutils
+brew install --cask karabiner-elements
 /bin/bash -c "$(brew --prefix)/opt/fzf/install --no-update-rc --completion --key-bindings"
 
 if [ -d "$DEPENDENCIES/fzf-tab" ]; then
