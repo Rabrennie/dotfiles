@@ -3,10 +3,10 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-source "$DOTFILES/install/helpers"
-
 DOTFILES=$(pwd -P)
 DEPENDENCIES="$DOTFILES/dependencies"
+
+source "$DOTFILES/install/helpers"
 
 mkdir -p "$DEPENDENCIES"
 
