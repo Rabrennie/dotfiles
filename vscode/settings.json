@@ -7,7 +7,7 @@
   "editor.detectIndentation": false,
   "editor.fontSize": 13,
   "editor.guides.bracketPairs": "active",
-  "editor.insertSpaces": false,
+  "editor.insertSpaces": true,
   "editor.lineNumbers": "on",
   "editor.minimap.enabled": false,
   "editor.stickyScroll.enabled": true,
