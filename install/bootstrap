@@ -29,14 +29,37 @@ else
 fi
 
 info 'installing tools'
-brew install bat exa fzf nvm jq ripgrep starship findutils
+brew install bat exa fzf nvm jq ripgrep starship findutils neovim
 brew install --cask karabiner-elements
+brew install --cask --no-quarantine alacritty
+
+if [ -d "$DEPENDENCIES/alacritty" ]; then
+    (cd "$DEPENDENCIES/alacritty" && git pull)
+else
+    git clone https://github.com/alacritty/alacritty.git "$DEPENDENCIES/alacritty"
+fi
+
+(cd "$DEPENDENCIES/alacritty" && sudo tic -xe alacritty,alacritty-direct extra/alacritty.info)
+
 /bin/bash -c "$(brew --prefix)/opt/fzf/install --no-update-rc --completion --key-bindings"
 
 if [ -d "$DEPENDENCIES/fzf-tab" ]; then
     (cd "$DEPENDENCIES/fzf-tab" && git pull)
 else
     git clone https://github.com/Aloxaf/fzf-tab "$DEPENDENCIES/fzf-tab"
+fi
+
+if [ -d "$DEPENDENCIES/fzf-tab" ]; then
+    (cd "$DEPENDENCIES/fzf-tab" && git pull)
+else
+    git clone https://github.com/Aloxaf/fzf-tab "$DEPENDENCIES/fzf-tab"
+fi
+
+PACKER_DIR="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
+if [ -d "$PACKER_DIR" ]; then
+    (cd "$PACKER_DIR" && git pull)
+else
+    git clone --depth 1 https://github.com/wbthomason/packer.nvim "$PACKER_DIR"
 fi
 
 success 'installed tools'
@@ -49,7 +72,7 @@ success 'installed fonts'
 link_file() {
     info "linking $1 to $2"
 
-    if test -f "$2"; then
+    if [[ -f "$2" && ! -L "$2" ]]; then
         BACKUP="$2.$(date +%s).bak"
         mv "$2" "$BACKUP"
         success "moved $2 to $BACKUP"
