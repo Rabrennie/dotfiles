@@ -3,12 +3,12 @@ local lsp = require('lsp-zero').preset({})
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
     lsp.default_keymaps({ buffer = bufnr })
-    vim.keymap.set("n", "gd", '<cmd>Telescope lsp_definitions<cr>', opts)
-    vim.keymap.set("n", "gr", '<cmd>Telescope lsp_references<cr>', { buffer = true })
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+    vim.keymap.set("n", "gd", '<cmd>Telescope lsp_definitions<cr>', { buffer = true, desc = "Go to definition" })
+    vim.keymap.set("n", "gr", '<cmd>Telescope lsp_references<cr>', { buffer = true, desc = "Show references" })
+    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { buffer = bufnr, desc = "Show hover" })
     vim.keymap.set({ 'n', 'x' }, '<leader>f', function()
         vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
-    end, opts)
+    end, { buffer = bufnr, desc = "Format" })
 end)
 
 lsp.ensure_installed({
