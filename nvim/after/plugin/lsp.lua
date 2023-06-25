@@ -6,9 +6,6 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "gd", '<cmd>Telescope lsp_definitions<cr>', { buffer = true, desc = "Go to definition" })
     vim.keymap.set("n", "gr", '<cmd>Telescope lsp_references<cr>', { buffer = true, desc = "Show references" })
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { buffer = bufnr, desc = "Show hover" })
-    vim.keymap.set({ 'n', 'x' }, '<leader>f', function()
-        vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
-    end, { buffer = bufnr, desc = "Format" })
 end)
 
 lsp.ensure_installed({
@@ -27,6 +24,28 @@ cmp.setup({
         ['<Tab>'] = cmp_action.tab_complete(),
         ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
         ['<CR>'] = cmp.mapping.confirm({ select = false })
+    }
+})
+
+lsp.format_mapping('<leader>f', {
+    format_opts = {
+        async = false,
+        timeout_ms = 10000,
+    },
+    servers = {
+        ['null-ls'] = {
+            "css",
+                "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
+            "json",
+            "scss",
+            "less",
+            "tsx",
+            'lua'
+        }
+        ,
     }
 })
 

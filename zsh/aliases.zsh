@@ -5,3 +5,4 @@ alias sz="source $HOME/.zshrc"
 
 alias vim="nvim"
 
+alias vdot='cd "$DOTFILES" && nvim .'
