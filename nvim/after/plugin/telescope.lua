@@ -9,3 +9,10 @@ vim.keymap.set("n", "<leader>/", function()
         previewer = false,
     }
 end, { desc = "Fuzzy Search" })
+
+require("telescope").setup({
+    defaults = {
+        prompt_prefix = "  ",
+        path_display = { "truncate" },
+    },
+})
