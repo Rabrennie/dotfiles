@@ -64,4 +64,17 @@ return require('packer').startup(function(use)
             }
         end
     }
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
+
+    use {
+        "folke/neodev.nvim",
+        config = function()
+            require('neodev').setup()
+        end
+    }
 end)
