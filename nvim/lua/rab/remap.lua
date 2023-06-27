@@ -19,3 +19,5 @@ vim.keymap.set("n", "<C-h>", "<C-w>h", { remap = true, desc = "Move cursor left 
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move cursor down window" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move cursor up window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move cursor right window" })
+
+vim.keymap.set({ "n" }, "<leader>q", ":bdelete<CR>", { desc = "Close current buffer" })
