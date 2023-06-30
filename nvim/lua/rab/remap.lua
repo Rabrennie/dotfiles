@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader>pv", ':Vexplore<CR>', { desc = "Project view - show explore" })
+vim.keymap.set("n", "<leader>pv", ':Ex<CR>', { desc = "Project view - show explore" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected text up" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected text down" })
