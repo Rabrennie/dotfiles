@@ -47,6 +47,7 @@ lsp.format_mapping("<leader>f", {
             "tsx",
             "lua",
             "svelte",
+            "ruby",
         },
     },
 })
@@ -59,6 +60,7 @@ null_ls.setup({
     sources = {
         null_ls.builtins.completion.spell,
         null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.rubocop,
         null_ls.builtins.formatting.prettierd.with({
             filetypes = {
                 "css",
@@ -73,6 +75,7 @@ null_ls.setup({
                 "svelte",
             },
         }),
+        
     },
     autostart = true,
 })
