@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader>pv", ':Ex<CR>', { desc = "Project view - show explore" })
+vim.keymap.set("n", "<leader>pv", ":Ex<CR>", { desc = "Project view - show explore" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected text up" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected text down" })
@@ -21,3 +21,8 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move cursor up window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move cursor right window" })
 
 vim.keymap.set({ "n" }, "<leader>q", ":bdelete<CR>", { desc = "Close current buffer" })
+
+vim.keymap.set("n", "<Leader>gi", function() vim.diagnostic.open_float() end, { noremap = true, silent = true, desc = "Open diagnostic" })
+vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end, { noremap = true, silent = true, desc = "Next diagnostic" })
+vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end, { noremap = true, silent = true, desc = "Previous diagnostic" })
+
