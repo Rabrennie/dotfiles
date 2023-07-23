@@ -67,6 +67,13 @@ return require("packer").startup(function(use)
     })
 
     use({
+        "folke/flash.nvim",
+        config = function()
+            require("flash").setup({})
+        end,
+    })
+
+    use({
         "numToStr/Comment.nvim",
         config = function()
             require("Comment").setup()
