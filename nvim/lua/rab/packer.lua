@@ -21,12 +21,13 @@ return require("packer").startup(function(use)
         end,
     })
 
-    use({ "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" } })
+    use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
     use("nvim-treesitter/nvim-treesitter-context")
     use("ThePrimeagen/harpoon")
     use("mbbill/undotree")
     use("tpope/vim-fugitive")
     use("gpanders/editorconfig.nvim")
+    use("rafamadriz/friendly-snippets")
 
     use({
         "VonHeikemen/lsp-zero.nvim",
@@ -45,6 +46,9 @@ return require("packer").startup(function(use)
 
             -- Autocompletion
             { "hrsh7th/nvim-cmp" }, -- Required
+            { "saadparwaiz1/cmp_luasnip" },
+            { "hrsh7th/cmp-buffer" }, -- Required
+            { "hrsh7th/cmp-path" }, -- Required
             { "hrsh7th/cmp-nvim-lsp" }, -- Required
             { "L3MON4D3/LuaSnip" }, -- Required
 
