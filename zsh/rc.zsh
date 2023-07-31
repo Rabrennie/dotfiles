@@ -32,8 +32,4 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 # Allows pressign up arrow to search history with fzf
 bindkey "^[[A" fzf-history-widget
 
-if [ -d "$HOME/.rvm" ]; then
-    # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-    export PATH="$PATH:$HOME/.rvm/bin"
-    source "$HOME/.rvm/scripts/rvm"
-fi
+export BAT_THEME="TwoDark"
