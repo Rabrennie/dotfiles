@@ -55,13 +55,6 @@ else
     git clone https://github.com/Aloxaf/fzf-tab "$DEPENDENCIES/fzf-tab"
 fi
 
-PACKER_DIR="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
-if [ -d "$PACKER_DIR" ]; then
-    (cd "$PACKER_DIR" && git pull)
-else
-    git clone --depth 1 https://github.com/wbthomason/packer.nvim "$PACKER_DIR"
-fi
-
 success 'installed tools'
 
 info 'installing fonts'
@@ -115,12 +108,7 @@ install_dotfiles
 
 info "Setting up nvim"
 
-while read -r line; do
-    mkdir -p "$HOME/.config/$line"
-done < <(cd "$DOTFILES" && gfind nvim -type d)
-
-while read -r line; do
-    link_file "$DOTFILES/$line" "$HOME/.config/$line"
-done < <(cd "$DOTFILES" && gfind nvim -type f)
+rm -rf "$HOME/.config/nvim"
+link_file "$DOTFILES/nvim" "$HOME/.config/nvim"
 
 source "$DOTFILES/install/vscode-settings"
