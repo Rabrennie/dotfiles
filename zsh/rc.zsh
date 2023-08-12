@@ -7,6 +7,8 @@ source_if_exists() {
 autoload -Uz compinit && compinit
 
 source_if_exists $HOME/.env.sh
+source_if_exists /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source_if_exists /opt/homebrew/opt/chruby/share/chruby/auto.sh
 source_if_exists $DOTFILES/zsh/aliases.zsh
 source_if_exists $DOTFILES/zsh/history.zsh
 source_if_exists $HOME/.fzf.zsh
