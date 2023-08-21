@@ -52,7 +52,6 @@ return {
     },
   },
   "gpanders/editorconfig.nvim",
-  "rafamadriz/friendly-snippets",
 
   {
     "folke/which-key.nvim",
@@ -121,7 +120,18 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     config = function()
-      require("gitsigns").setup()
+      require("gitsigns").setup({})
+    end,
+  },
+
+  {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-treesitter/nvim-treesitter" },
+    },
+    config = function()
+      require("refactoring").setup({})
     end,
   },
 }
