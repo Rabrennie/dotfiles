@@ -1,8 +1,15 @@
 return {
   {
     "olimorris/onedarkpro.nvim",
+  },
+
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+
     config = function()
-      vim.cmd("colorscheme onedark")
+      vim.cmd("colorscheme catppuccin-frappe")
     end,
   },
 
@@ -48,7 +55,7 @@ return {
   {
     "tpope/vim-fugitive",
     keys = {
-      { "<leader>gs", vim.cmd.Git, desc = "Git status" },
+      { "<leader>gs", "<cmd>:vert Git<CR>:vertical resize 50%<CR>:set wrap<CR>", desc = "Git status" },
     },
   },
   "gpanders/editorconfig.nvim",

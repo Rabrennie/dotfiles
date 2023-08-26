@@ -55,6 +55,14 @@ else
     git clone https://github.com/Aloxaf/fzf-tab "$DEPENDENCIES/fzf-tab"
 fi
 
+# install TPM
+if [ -d "$HOME/.tmux/plugins/tpm" ]; then
+    (cd "$HOME/.tmux/plugins/tpm" && git pull)
+else
+    mkdir -p "$HOME/.tmux/plugins"
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
 success 'installed tools'
 
 info 'installing fonts'

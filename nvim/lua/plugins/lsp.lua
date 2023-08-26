@@ -14,6 +14,7 @@ return {
     { "williamboman/mason-lspconfig.nvim" }, -- Optional
 
     -- Autocompletion
+    { "hrsh7th/nvim-cmp" }, -- Required
     { "saadparwaiz1/cmp_luasnip" },
     { "hrsh7th/cmp-buffer" }, -- Required
     { "hrsh7th/cmp-path" }, -- Required
@@ -21,68 +22,7 @@ return {
     {
       "L3MON4D3/LuaSnip",
       dependencies = { "rafamadriz/friendly-snippets" },
-      config = function()
-        local ls = require("luasnip")
-        require("luasnip.loaders.from_vscode").lazy_load()
-
-        ls.filetype_extend("ruby", { "rails" })
-        ls.filetype_extend("javascript", { "typescript" })
-        ls.filetype_extend("arduino", { "cpp" })
-      end,
     },
-    {
-      "hrsh7th/nvim-cmp",
-      dependencies = { "L3MON4D3/LuaSnip" },
-      config = function()
-        local cmp = require("cmp")
-        local cmp_action = require("lsp-zero").cmp_action()
-
-        cmp.setup({
-          sources = {
-            { name = "nvim_lsp" },
-            { name = "luasnip" },
-            { name = "path" },
-            { name = "buffer", keyword_length = 5 },
-          },
-          mapping = {
-            ["<Tab>"] = cmp_action.tab_complete(),
-            ["<S-Tab>"] = cmp_action.select_prev_or_fallback(),
-            ["<CR>"] = cmp.mapping.confirm({ select = false }),
-          },
-          sorting = {
-            comparators = {
-              cmp.config.compare.offset,
-              cmp.config.compare.exact,
-              cmp.config.compare.score,
-
-              -- copied from cmp-under, but I don't think I need the plugin for this.
-              -- I might add some more of my own.
-              function(entry1, entry2)
-                local _, entry1_under = entry1.completion_item.label:find("^_+")
-                local _, entry2_under = entry2.completion_item.label:find("^_+")
-                entry1_under = entry1_under or 0
-                entry2_under = entry2_under or 0
-                if entry1_under > entry2_under then
-                  return false
-                elseif entry1_under < entry2_under then
-                  return true
-                end
-              end,
-
-              cmp.config.compare.kind,
-              cmp.config.compare.sort_text,
-              cmp.config.compare.length,
-              cmp.config.compare.order,
-            },
-          },
-          snippet = {
-            expand = function(args)
-              require("luasnip").lsp_expand(args.body)
-            end,
-          },
-        })
-      end,
-    }, -- Required
 
     { "folke/neodev.nvim" }, -- Required
 
@@ -92,8 +32,7 @@ return {
   config = function()
     local lsp = require("lsp-zero").preset({})
 
-    lsp.on_attach(function(client, bufnr)
-      local opts = { buffer = bufnr, remap = false }
+    lsp.on_attach(function(_, bufnr)
       lsp.default_keymaps({ buffer = bufnr })
       vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", { buffer = true, desc = "Go to definition" })
       vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { buffer = true, desc = "Show references" })
@@ -131,6 +70,57 @@ return {
             ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
           },
         },
+      },
+    })
+
+    local cmp = require("cmp")
+    local cmp_action = require("lsp-zero").cmp_action()
+
+    require("luasnip")
+    require("luasnip.loaders.from_vscode").lazy_load()
+
+    cmp.setup({
+      sources = {
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "path" },
+        { name = "buffer", keyword_length = 5 },
+      },
+      mapping = {
+        ["<Tab>"] = cmp_action.tab_complete(),
+        ["<S-Tab>"] = cmp_action.select_prev_or_fallback(),
+        ["<CR>"] = cmp.mapping.confirm({ select = false }),
+      },
+      sorting = {
+        comparators = {
+          cmp.config.compare.offset,
+          cmp.config.compare.exact,
+          cmp.config.compare.score,
+
+          -- copied from cmp-under, but I don't think I need the plugin for this.
+          -- I might add some more of my own.
+          function(entry1, entry2)
+            local _, entry1_under = entry1.completion_item.label:find("^_+")
+            local _, entry2_under = entry2.completion_item.label:find("^_+")
+            entry1_under = entry1_under or 0
+            entry2_under = entry2_under or 0
+            if entry1_under > entry2_under then
+              return false
+            elseif entry1_under < entry2_under then
+              return true
+            end
+          end,
+
+          cmp.config.compare.kind,
+          cmp.config.compare.sort_text,
+          cmp.config.compare.length,
+          cmp.config.compare.order,
+        },
+      },
+      snippet = {
+        expand = function(args)
+          require("luasnip").lsp_expand(args.body)
+        end,
       },
     })
 
