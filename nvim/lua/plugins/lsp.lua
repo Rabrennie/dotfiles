@@ -130,7 +130,6 @@ return {
         timeout_ms = 10000,
       },
       servers = {
-        ["rust_analyzer"] = { "rust" },
         ["null-ls"] = {
           "css",
           "javascript",
@@ -158,7 +157,6 @@ return {
     null_ls.setup({
       sources = {
         null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.rubocop,
         null_ls.builtins.formatting.astyle,
         null_ls.builtins.code_actions.shellcheck.with({
           filetypes = { "sh", "zsh", "bash" },

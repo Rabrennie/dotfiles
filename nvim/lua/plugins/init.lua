@@ -76,7 +76,13 @@ return {
   {
     "folke/flash.nvim",
     config = function()
-      require("flash").setup({})
+      require("flash").setup({
+        modes = {
+          search = {
+            enabled = false,
+          },
+        },
+      })
       vim.keymap.set({ "n", "x", "o" }, "s", function()
         require("flash").jump()
       end, { desc = "Flash" })
@@ -86,9 +92,9 @@ return {
       vim.keymap.set({ "o", "x" }, "R", function()
         require("flash").treesitter_search()
       end, { desc = "Treesitter Search" })
-      vim.keymap.set({ "c" }, "<c-s>", function()
-        require("flash").toggle()
-      end, { desc = "Toggle Flash Search" })
+      -- vim.keymap.set({ "c" }, "<c-s>", function()
+      --   require("flash").toggle()
+      -- end, { desc = "Toggle Flash Search" })
     end,
   },
 
@@ -118,6 +124,35 @@ return {
     config = function()
       vim.g.copilot_no_tab_map = true
       vim.g.copilot_assume_mapped = true
+      vim.g.copilot_filetypes = {
+        javascript = true,
+        javascriptreact = true,
+        typescript = true,
+        typescriptreact = true,
+        svelte = true,
+        ruby = true,
+        lua = true,
+        vim = true,
+        vimdoc = true,
+        query = true,
+        yaml = true,
+        bash = true,
+        sh = true,
+        zsh = true,
+        sql = true,
+        go = true,
+        python = true,
+        rust = true,
+        php = true,
+        html = true,
+        css = true,
+        scss = true,
+        less = true,
+        json = true,
+        markdown = true,
+        graphql = true,
+        vue = true,
+      }
       vim.keymap.set("i", "<C-f>", 'copilot#Accept("<CR>")', { silent = true, expr = true, replace_keycodes = false })
       vim.keymap.set("i", "<C-t>", "<Plug>(copilot-next)", { silent = true, noremap = true })
       vim.keymap.set("i", "<C-\\>", "<Plug>(copilot-suggest)", { silent = true, noremap = true })
