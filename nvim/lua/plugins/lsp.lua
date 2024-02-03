@@ -18,6 +18,7 @@ return {
     { "saadparwaiz1/cmp_luasnip" },
     { "hrsh7th/cmp-buffer" }, -- Required
     { "hrsh7th/cmp-path" }, -- Required
+    { "hrsh7th/cmp-cmdline" }, -- Required
     { "hrsh7th/cmp-nvim-lsp" }, -- Required
     {
       "L3MON4D3/LuaSnip",
@@ -122,6 +123,27 @@ return {
           require("luasnip").lsp_expand(args.body)
         end,
       },
+    })
+
+    cmp.setup.cmdline("/", {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = "buffer" },
+      },
+    })
+
+    cmp.setup.cmdline(":", {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = "path" },
+      }, {
+        {
+          name = "cmdline",
+          option = {
+            ignore_cmds = { "Man", "!" },
+          },
+        },
+      }),
     })
 
     lsp.format_mapping("<leader>f", {

@@ -1,4 +1,4 @@
-$DOTFILES/alacritty/alacritty.yml=$HOME/.config/alacritty/alacritty.yml
+$DOTFILES/alacritty/alacritty.toml=$HOME/.config/alacritty/alacritty.toml
 $DOTFILES/alacritty/theme.yml=$HOME/.config/alacritty/theme.yml
 $DOTFILES/alacritty/catppuccin/catppuccin-macchiato.yml=$HOME/.config/alacritty/catppuccin-macchiato.yml
-$DOTFILES/alacritty/catppuccin/catppuccin-frappe.yml=$HOME/.config/alacritty/catppuccin-frappe.yml
+$DOTFILES/alacritty/catppuccin/catppuccin-frappe.toml=$HOME/.config/alacritty/catppuccin-frappe.toml
