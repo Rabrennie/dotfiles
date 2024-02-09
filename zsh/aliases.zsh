@@ -1,5 +1,5 @@
-alias ls='exa'
-alias ll='exa -lah'
+alias ls='eza'
+alias ll='eza -lah'
 
 alias sz="source $HOME/.zshrc"
 
