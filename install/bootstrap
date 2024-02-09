@@ -29,7 +29,7 @@ else
 fi
 
 info 'installing tools'
-brew install bat exa fzf nvm jq ripgrep starship findutils neovim tmux
+brew install bat eza fzf nvm jq ripgrep starship findutils neovim tmux
 brew install --cask karabiner-elements
 brew install --cask --no-quarantine alacritty
 
