@@ -118,5 +118,3 @@ info "Setting up nvim"
 
 rm -rf "$HOME/.config/nvim"
 link_file "$DOTFILES/nvim" "$HOME/.config/nvim"
-
-source "$DOTFILES/install/vscode-settings"
