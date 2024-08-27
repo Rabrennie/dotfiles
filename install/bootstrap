@@ -31,6 +31,7 @@ fi
 info 'installing tools'
 brew install bat eza fzf nvm jq ripgrep starship findutils neovim tmux
 brew install --cask karabiner-elements
+brew install --cask wezterm
 brew install --cask --no-quarantine alacritty
 
 if [ -d "$DEPENDENCIES/alacritty" ]; then
@@ -43,17 +44,17 @@ fi
 
 /bin/bash -c "$(brew --prefix)/opt/fzf/install --no-update-rc --completion --key-bindings"
 
-if [ -d "$DEPENDENCIES/fzf-tab" ]; then
-    (cd "$DEPENDENCIES/fzf-tab" && git pull)
-else
-    git clone https://github.com/Aloxaf/fzf-tab "$DEPENDENCIES/fzf-tab"
-fi
-
-if [ -d "$DEPENDENCIES/fzf-tab" ]; then
-    (cd "$DEPENDENCIES/fzf-tab" && git pull)
-else
-    git clone https://github.com/Aloxaf/fzf-tab "$DEPENDENCIES/fzf-tab"
-fi
+# if [ -d "$DEPENDENCIES/fzf-tab" ]; then
+#     (cd "$DEPENDENCIES/fzf-tab" && git pull)
+# else
+#     git clone https://github.com/Aloxaf/fzf-tab "$DEPENDENCIES/fzf-tab"
+# fi
+#
+# if [ -d "$DEPENDENCIES/fzf-tab" ]; then
+#     (cd "$DEPENDENCIES/fzf-tab" && git pull)
+# else
+#     git clone https://github.com/Aloxaf/fzf-tab "$DEPENDENCIES/fzf-tab"
+# fi
 
 # install TPM
 if [ -d "$HOME/.tmux/plugins/tpm" ]; then
@@ -65,10 +66,10 @@ fi
 
 success 'installed tools'
 
-info 'installing fonts'
-brew tap homebrew/cask-fonts
-brew install --cask font-jetbrains-mono-nerd-font
-success 'installed fonts'
+# info 'installing fonts'
+# brew tap homebrew/cask-fonts
+# brew install --cask font-jetbrains-mono-nerd-font
+# success 'installed fonts'
 
 link_file() {
     info "linking $1 to $2"
@@ -95,6 +96,10 @@ install_dotfiles() {
             src=$(eval echo "$line" | cut -d '=' -f 1)
             dst=$(eval echo "$line" | cut -d '=' -f 2)
             dir=$(dirname "$dst")
+
+            echo "src: $src"
+            echo "dst: $dst"
+            echo "dir: $dir"
 
             mkdir -p "$dir"
             link_file "$src" "$dst"

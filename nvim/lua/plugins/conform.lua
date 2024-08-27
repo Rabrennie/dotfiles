@@ -10,7 +10,11 @@ return {
         typescript = { "prettierd" },
         typescriptreact = { "prettierd" },
         javascriptreact = { "prettierd" },
+        json = { "prettierd" },
+        svelte = { "prettierd" },
+        xml = { "xmlformat" },
       },
+      -- log_level = vim.log.levels.DEBUG,
     })
 
     vim.keymap.set("n", "<leader>cf", "<cmd>lua require('conform').format({ async = true })<cr>", { noremap = true })
